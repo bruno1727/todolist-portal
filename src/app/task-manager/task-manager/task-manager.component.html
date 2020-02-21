@@ -1,1 +1,3 @@
-<p>task-manager works!</p>
+<app-task-include (addTaskEvent)="addTask($event)"></app-task-include>
+<app-task-exclude [selectedTasks]="list.selectedTasks" (removeTasksEvent)="removeTasks($event)"></app-task-exclude>
+<app-task-list #list [tasks]="tasks"></app-task-list>

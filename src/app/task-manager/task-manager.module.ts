@@ -4,13 +4,24 @@ import { TaskManagerComponent } from './task-manager/task-manager.component';
 import { TaskSearchComponent } from './task-search/task-search.component';
 import { TaskIncludeComponent } from './task-include/task-include.component';
 import { TaskListComponent } from './task-list/task-list.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import {MatListModule} from '@angular/material/list';
+import { TaskExcludeComponent } from './task-exclude/task-exclude.component';
 
 
 
 @NgModule({
-  declarations: [TaskManagerComponent, TaskSearchComponent, TaskIncludeComponent, TaskListComponent],
+  declarations: [TaskManagerComponent, TaskSearchComponent, TaskIncludeComponent, TaskListComponent, TaskExcludeComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    MatListModule
   ]
 })
 export class TaskManagerModule { }

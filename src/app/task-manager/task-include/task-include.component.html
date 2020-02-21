@@ -1,1 +1,7 @@
-<p>task-manager-include works!</p>
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Tarefa</mat-label>
+        <input matInput [(ngModel)]="task" name="task">
+    </mat-form-field>
+    <button mat-button (click)="addTask()">Adicionar</button>
+</form>

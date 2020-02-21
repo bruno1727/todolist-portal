@@ -1,1 +1,3 @@
-<p>task-manager-grid works!</p>
+<mat-selection-list [(ngModel)]="selectedTasks">
+    <mat-list-option *ngFor="let task of tasks" [value]="task">{{task}}</mat-list-option>
+</mat-selection-list>

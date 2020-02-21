@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-task-include',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskIncludeComponent implements OnInit {
 
+  @Output() addTaskEvent = new EventEmitter<string>();
+
+  task: string;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addTask(){
+    this.addTaskEvent.emit(this.task);
+    this.task = "";
   }
 
 }
