@@ -10,6 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 import { TaskExcludeComponent } from './task-exclude/task-exclude.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -21,7 +22,8 @@ import { TaskExcludeComponent } from './task-exclude/task-exclude.component';
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ]
 })
 export class TaskManagerModule { }

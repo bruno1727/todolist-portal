@@ -9,7 +9,7 @@ export class TaskListComponent implements OnInit {
 
   @Input() tasks: string[];
 
-  selectedTasks: string[];
+  selectedTasks: string[] = [];
 
   constructor() { }
 
