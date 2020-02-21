@@ -3,5 +3,5 @@
         <mat-label>Tarefa</mat-label>
         <input matInput [(ngModel)]="task" name="task">
     </mat-form-field>
-    <button mat-button (click)="addTask()">Adicionaar</button>
+    <button mat-button (click)="addTask()" [disabled]="!task.trim().length">Adicionar</button>
 </form>

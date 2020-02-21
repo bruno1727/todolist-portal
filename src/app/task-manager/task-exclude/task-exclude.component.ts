@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-task-exclude',
@@ -10,13 +11,19 @@ export class TaskExcludeComponent implements OnInit {
   @Input() selectedTasks: string[];
   @Output() removeTasksEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   removeTasks(){
-    this.removeTasksEvent.emit(true);
+    let valid = true;
+
+    if(!this.selectedTasks.length){
+      this._snackBar.open("Nenhuma tarefa selecionada");
+      valid = false;
+    }
+    this.removeTasksEvent.emit(valid);
   }
 
 }

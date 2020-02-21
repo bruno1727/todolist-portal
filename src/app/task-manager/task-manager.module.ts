@@ -11,8 +11,7 @@ import { FormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
 import { TaskExcludeComponent } from './task-exclude/task-exclude.component';
 import {MatCardModule} from '@angular/material/card';
-
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [TaskManagerComponent, TaskSearchComponent, TaskIncludeComponent, TaskListComponent, TaskExcludeComponent],
@@ -23,7 +22,8 @@ import {MatCardModule} from '@angular/material/card';
     MatButtonModule,
     FormsModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
   ]
 })
 export class TaskManagerModule { }
