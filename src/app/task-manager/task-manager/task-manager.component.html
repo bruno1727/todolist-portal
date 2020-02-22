@@ -2,6 +2,7 @@
     <mat-card-header>
         <mat-card-title>Gerenciador de tarefas</mat-card-title>
     </mat-card-header>
+    <mat-divider></mat-divider>
     <mat-card-content>
         <app-task-include (addTaskEvent)="addTask($event)"></app-task-include>
         <app-task-list #list [tasks]="tasks"></app-task-list>

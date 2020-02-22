@@ -1,7 +1,9 @@
 <form class="example-form">
+    <button mat-flat-button color="primary" (click)="addTask()" [disabled]="!task.trim().length">
+        <mat-icon>add</mat-icon> Adicionar
+    </button>
     <mat-form-field class="example-full-width">
         <mat-label>Tarefa</mat-label>
         <input matInput [(ngModel)]="task" name="task">
     </mat-form-field>
-    <button mat-button (click)="addTask()" [disabled]="!task.trim().length">Adicionar</button>
 </form>

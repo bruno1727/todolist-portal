@@ -20,14 +20,20 @@ export class TaskManagerComponent implements OnInit {
 
   addTask(task: string){
     this.tasks.push(task);
-    this._snackBar.open('Tarefa adicionada');
+    this._snackBar.open('1 tarefa(s) adicionada(s)');
   }
 
   removeTasks(valid: boolean){
 
     if(valid){
+      let temp = this.list.selectedTasks;
       this.tasks = this.tasks.filter(t => !this.list.selectedTasks.includes(t));
-      this._snackBar.open(this.list.selectedTasks.length + ' tarefa(s) removida(s)');
+      this._snackBar
+        .open(this.list.selectedTasks.length + ' tarefa(s) removida(s)', "Desfazer", {
+          duration: 3000
+        }).onAction().subscribe(() => {
+          temp.forEach(t => this.tasks.push(t));
+        });
     }
   }
 
