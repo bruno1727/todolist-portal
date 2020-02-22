@@ -18,6 +18,10 @@ export class TaskManagerComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectAll(){
+    this.list.selectAll();
+  }
+
   addTask(task: string){
     this.tasks.push(task);
     this._snackBar.open('1 tarefa(s) adicionada(s)');
