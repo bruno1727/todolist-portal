@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-task-exclude',
@@ -10,6 +11,8 @@ export class TaskExcludeComponent implements OnInit {
 
   @Input() selectedTasks: string[];
   @Output() removeTasksEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  tooltipPosition: TooltipPosition = 'below';
 
   constructor(private _snackBar: MatSnackBar) { }
 

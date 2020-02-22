@@ -1,3 +1,5 @@
-<button mat-flat-button color="warn" (click)="removeTasks()">
+<button mat-flat-button color="warn" (click)="removeTasks()" 
+    matTooltip="Excluir"
+    [matTooltipPosition]="tooltipPosition">
     <mat-icon>delete</mat-icon>
 </button>
