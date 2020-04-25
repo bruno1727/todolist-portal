@@ -3,6 +3,7 @@ import { TaskListComponent } from '../task-list/task-list.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskManagerService } from '../task-manager.service';
 import { Subscription } from 'rxjs';
+import { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-task-manager',
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class TaskManagerComponent implements OnInit {
 
-  tasks: string[] = [];
+  tasks: Task[] = [];
 
   @ViewChild("list") list: TaskListComponent;
 
@@ -24,7 +25,7 @@ export class TaskManagerComponent implements OnInit {
 
   loadTasks(){
     this.service.getTasks().subscribe(data => {
-      this.tasks = data as any;
+      this.tasks = data;
     });
   }
 
@@ -33,8 +34,12 @@ export class TaskManagerComponent implements OnInit {
   }
 
   addTask(task: string){
-    this.service.addTask(task).subscribe(data => {
-      this._snackBar.open('1 tarefa(s) adicionada(s)');
+    this._addTasks([task]);
+  }
+
+  private _addTasks(tasks: string[]){
+    this.service.addTasks(tasks).subscribe(data => {
+      this._snackBar.open(tasks.length + ' tarefa(s) adicionada(s)');
       this.loadTasks();
     })
   }
@@ -42,20 +47,17 @@ export class TaskManagerComponent implements OnInit {
   removeTasks(valid: boolean){
 
     if(valid){
-      let temp = this.list.selectedTasks;
-      this.list.selectedTasks.forEach(t => {
-        this.service.removeTask(t).subscribe(data => {
-          this.loadTasks();
-        })
-      });
-      //aqui tem risco de ser executado antes de acabar o request
-      this._snackBar
-        .open(this.list.selectedTasks.length + ' tarefa(s) removida(s)', "Desfazer", {
-          duration: 3000
-        }).onAction().subscribe(() => {
-          temp.forEach(t => this.addTask(t));
+      this.service.removeTasks(this.list.selectedTasks).subscribe(data => {
+        this.loadTasks();
+
+        this._snackBar
+          .open(this.list.selectedTasks.length + ' tarefa(s) removida(s)', "Desfazer", {
+            duration: 3000
+          }).onAction().subscribe(() => {
+            this._addTasks(data.map(t => t.description));
+          });
         });
-    }
+      }
   }
 
 }

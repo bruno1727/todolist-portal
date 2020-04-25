@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
+import { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-task-list',
@@ -8,11 +9,11 @@ import { MatSelectionList } from '@angular/material/list';
 })
 export class TaskListComponent implements OnInit {
 
-  @Input() tasks: string[];
+  @Input() tasks: Task[];
 
   @ViewChild("selectionList") selectionList: MatSelectionList;
 
-  selectedTasks: string[] = [];
+  selectedTasks: Task[] = [];
 
   constructor() { }
 
