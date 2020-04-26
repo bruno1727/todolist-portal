@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TaskManagerService } from '../task-manager.service';
 import { Subscription } from 'rxjs';
 import { Task } from '../models/task.model';
+import { TaskIncludeComponent } from '../task-include/task-include.component';
 
 @Component({
   selector: 'app-task-manager',
@@ -16,6 +17,7 @@ export class TaskManagerComponent implements OnInit {
   public selectAll = false;
 
   @ViewChild("list") list: TaskListComponent;
+  @ViewChild("include") include: TaskIncludeComponent;
 
   constructor(private _snackBar: MatSnackBar,
     private service: TaskManagerService) { }
@@ -23,6 +25,10 @@ export class TaskManagerComponent implements OnInit {
   ngOnInit(): void {
     this.loadTasks();
   }
+
+  ngAfterViewInit() {
+    this.include.focus();
+ }
 
   loadTasks(){
     this.service.getTasks().subscribe(data => {

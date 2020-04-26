@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-task-include',
@@ -9,6 +10,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class TaskIncludeComponent implements OnInit {
 
   @Output() addTaskEvent = new EventEmitter<string>();
+
+  @ViewChild("input") input: ElementRef;
 
   task: string = "";
 
@@ -28,4 +31,7 @@ export class TaskIncludeComponent implements OnInit {
 
   }
 
+  focus(){
+    this.input.nativeElement.focus();
+  }
 }
