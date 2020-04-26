@@ -24,6 +24,12 @@ export class TaskManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadTasks();
+
+    document.addEventListener('keydown', event => {
+      if(event.keyCode == 46 && this.list.selectedTasks.length){
+        this.removeTasks(true);
+      }
+    })
   }
 
   ngAfterViewInit() {
@@ -38,6 +44,7 @@ export class TaskManagerComponent implements OnInit {
 
   addTask(task: string){
     this._addTasks([task]);
+    this.include.focus();
   }
 
   private _addTasks(tasks: string[]){
@@ -60,6 +67,8 @@ export class TaskManagerComponent implements OnInit {
             this._addTasks(data.map(t => t.description));
           });
         });
+
+        this.include.focus();
       }
   }
 

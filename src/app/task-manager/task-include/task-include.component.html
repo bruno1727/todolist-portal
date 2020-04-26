@@ -5,5 +5,9 @@
     <mat-form-field class="example-full-width">
         <mat-label>Tarefa</mat-label>
         <input #input matInput [(ngModel)]="task" name="task">
+        <mat-hint align="end">{{task.length}} / 256</mat-hint>
+        <button mat-button *ngIf="task" matSuffix mat-icon-button aria-label="Clear" (click)="task=''">
+            <mat-icon>close</mat-icon>
+        </button>
     </mat-form-field>
 </form>
