@@ -13,6 +13,7 @@ import { Task } from '../models/task.model';
 export class TaskManagerComponent implements OnInit {
 
   tasks: Task[] = [];
+  public selectAll = false;
 
   @ViewChild("list") list: TaskListComponent;
 
@@ -29,8 +30,11 @@ export class TaskManagerComponent implements OnInit {
     });
   }
 
-  selectAll(){
-    this.list.selectAll();
+  onSelectAll(){
+    if(this.selectAll)
+      this.list.selectAll();
+    else
+      this.list.deselectAll();
   }
 
   addTask(task: string){

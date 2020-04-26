@@ -24,4 +24,8 @@ export class TaskListComponent implements OnInit {
     this.selectionList.selectAll();
   }
 
+  deselectAll(){
+    this.selectionList.deselectAll();
+  }
+
 }
