@@ -30,13 +30,6 @@ export class TaskManagerComponent implements OnInit {
     });
   }
 
-  onSelectAll(){
-    if(this.selectAll)
-      this.list.selectAll();
-    else
-      this.list.deselectAll();
-  }
-
   addTask(task: string){
     this._addTasks([task]);
   }

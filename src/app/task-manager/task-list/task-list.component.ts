@@ -11,6 +11,8 @@ export class TaskListComponent implements OnInit {
 
   @Input() tasks: Task[];
 
+  selectAll = false;
+
   @ViewChild("selectionList") selectionList: MatSelectionList;
 
   selectedTasks: Task[] = [];
@@ -20,12 +22,28 @@ export class TaskListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectAll(){
-    this.selectionList.selectAll();
+  isAllSelected(){
+    return this.selectedTasks.length == this.tasks.length;
   }
 
-  deselectAll(){
+  onSelectAll(){
+    if(this.selectAll)
+      this.selectionList.selectAll();
+    else
     this.selectionList.deselectAll();
+  }
+
+  cleanSelection(){
+    this.selectAll = false;
+    this.onSelectAll();
+  }
+
+  selectionChange(){
+    if(!this.isAllSelected())
+      this.selectAll = false;
+    else
+      this.selectAll = true;
+    
   }
 
 }
