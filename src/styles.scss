@@ -2,3 +2,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #673ab7;}
+
+@font-face{
+    font-family: Cinzel;
+    src: url('assets/fonts/cinzel/cinzel-regular.otf');
+}
+
+@font-face{
+    font-family: NeoRetroDraw;
+    src: url('assets/fonts/neo-retro-draw/neo-retro-draw-regular.ttf');
+}
+
+@font-face{
+    font-family: ComicZine;
+    src: url('assets/fonts/comic-zine/comic-zine-regular.otf');
+}
