@@ -10,7 +10,6 @@ import { LocalStorage } from './local-storage';
 export class TaskManagerService {
 
   private apiUrl = "http://localhost:54879/";
-  private offline = LocalStorage.isOffline();
 
   constructor(private http: HttpClient) {
     if(!this._getTasksLocalStorage())
@@ -19,7 +18,7 @@ export class TaskManagerService {
 
   getTasks(): Observable<Task[]>{
 
-    if(this.offline){
+    if(LocalStorage.isOffline()){
       return of(JSON.parse(this._getTasksLocalStorage()));
     } else{
       return this.http.get<Task[]>(this.apiUrl + "api/task");
@@ -29,7 +28,7 @@ export class TaskManagerService {
 
   addTasks(tasks: string[]): Observable<any>{
 
-    if(this.offline){
+    if(LocalStorage.isOffline()){
       this._addTasksLocalStorage(tasks);
       return of(true);
     } else{
@@ -41,7 +40,7 @@ export class TaskManagerService {
 
     const ids = tasks.map(t => t.id);
 
-    if(this.offline){
+    if(LocalStorage.isOffline()){
       localStorage.setItem("tasks", JSON.stringify(JSON.parse(this._getTasksLocalStorage()).filter(t => ids.indexOf(t.id) == -1 )));
       return of(tasks);
     } else{

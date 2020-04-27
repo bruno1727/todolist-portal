@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LocalStorage } from '../local-storage';
 
 @Component({
@@ -8,7 +8,9 @@ import { LocalStorage } from '../local-storage';
 })
 export class DataSwitchModeComponent implements OnInit {
 
-  offline = LocalStorage.isOffline();
+  @Output() changeOutput: EventEmitter<void> = new EventEmitter<void>();
+
+  online = !LocalStorage.isOffline();
 
   constructor() { }
 
@@ -16,7 +18,8 @@ export class DataSwitchModeComponent implements OnInit {
   }
 
   change(){
-    LocalStorage.setOffline(this.offline);
+    LocalStorage.setOffline(!this.online);
+    this.changeOutput.emit();
   }
 
 }
