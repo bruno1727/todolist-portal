@@ -15,9 +15,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DataSwitchModeComponent } from './data-switch-mode/data-switch-mode.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
-  declarations: [TaskManagerComponent, TaskSearchComponent, TaskIncludeComponent, TaskListComponent, TaskExcludeComponent],
+  declarations: [TaskManagerComponent, TaskSearchComponent, TaskIncludeComponent, TaskListComponent, TaskExcludeComponent, DataSwitchModeComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -29,7 +31,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSnackBarModule,
     MatIconModule,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSlideToggleModule
   ]
 })
 export class TaskManagerModule { }

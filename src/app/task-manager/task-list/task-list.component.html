@@ -3,5 +3,5 @@
         <mat-checkbox (change)="onSelectAll()" [(ngModel)]="selectAll" *ngIf="tasks.length" title="Selecionar todas as tarefas"></mat-checkbox>
         <button mat-button (click)="cleanSelection()" *ngIf="selectedTasks.length">Limpar seleção</button>
     </div>
-    <mat-list-option *ngFor="let task of tasks" [value]="task" [checkboxPosition]="before">{{task.description}}</mat-list-option>
+    <mat-list-option *ngFor="let task of tasks" [value]="task" [checkboxPosition]="'before'">{{task.description}}</mat-list-option>
 </mat-selection-list>

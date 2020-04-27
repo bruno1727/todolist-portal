@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Task } from './models/task.model';
 import { Observable, of} from 'rxjs';
+import { LocalStorage } from './local-storage';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,7 @@ import { Observable, of} from 'rxjs';
 export class TaskManagerService {
 
   private apiUrl = "http://localhost:54879/";
-  private offline = true;/*
-  private offline = false;//*/
+  private offline = LocalStorage.isOffline();
 
   constructor(private http: HttpClient) {
     if(!this._getTasksLocalStorage())
