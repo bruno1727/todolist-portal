@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskManagerComponent } from './task-manager/task-manager.component';
-import { TaskSearchComponent } from './task-search/task-search.component';
-import { TaskIncludeComponent } from './task-include/task-include.component';
-import { TaskListComponent } from './task-list/task-list.component';
+import { TodoComponent } from './todo/todo.component';
+import { TodoSearchComponent } from './todo-search/todo-search.component';
+import { TodoIncludeComponent } from './todo-include/todo-include.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
-import { TaskExcludeComponent } from './task-exclude/task-exclude.component';
+import { TodoExcludeComponent } from './todo-exclude/todo-exclude.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatIconModule} from '@angular/material/icon';
@@ -19,7 +19,7 @@ import { DataSwitchModeComponent } from './data-switch-mode/data-switch-mode.com
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
-  declarations: [TaskManagerComponent, TaskSearchComponent, TaskIncludeComponent, TaskListComponent, TaskExcludeComponent, DataSwitchModeComponent],
+  declarations: [TodoComponent, TodoSearchComponent, TodoIncludeComponent, TodoListComponent, TodoExcludeComponent, DataSwitchModeComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -35,4 +35,4 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSlideToggleModule
   ]
 })
-export class TaskManagerModule { }
+export class TodoModule { }

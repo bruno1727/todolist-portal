@@ -1,0 +1,7 @@
+<mat-selection-list #selectionList [(ngModel)]="selectedTodos" (selectionChange)="selectionChange()">
+    <div mat-subheader>
+        <mat-checkbox (change)="onSelectAll()" [(ngModel)]="selectAll" *ngIf="todos.length" title="Selecionar todas as tarefas"></mat-checkbox>
+        <button mat-button (click)="cleanSelection()" *ngIf="selectedTodos.length">Limpar seleção</button>
+    </div>
+    <mat-list-option *ngFor="let todo of todos" [value]="todo" [checkboxPosition]="'before'">{{todo.description}}</mat-list-option>
+</mat-selection-list>

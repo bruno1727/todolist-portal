@@ -3,30 +3,30 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-task-include',
-  templateUrl: './task-include.component.html',
-  styleUrls: ['./task-include.component.scss']
+  selector: 'app-todo-include',
+  templateUrl: './todo-include.component.html',
+  styleUrls: ['./todo-include.component.scss']
 })
-export class TaskIncludeComponent implements OnInit {
+export class TodoIncludeComponent implements OnInit {
 
-  @Output() addTaskEvent = new EventEmitter<string>();
+  @Output() addTodoEvent = new EventEmitter<string>();
 
   @ViewChild("input") input: ElementRef;
 
-  task: string = "";
+  todo: string = "";
 
   constructor(private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
-  addTask(){
+  addTodo(){
 
-    if(!this.task.trim().length){
+    if(!this.todo.trim().length){
       this._snackBar.open("Não é permitido inserir uma tarefa vazia");
     } else{
-      this.addTaskEvent.emit(this.task);
-      this.task = "";
+      this.addTodoEvent.emit(this.todo);
+      this.todo = "";
     }
 
   }

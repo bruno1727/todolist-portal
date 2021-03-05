@@ -1,21 +1,21 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { MatSelectionList } from '@angular/material/list';
-import { Task } from '../models/task.model';
+import { Todo } from '../models/todo.model';
 
 @Component({
-  selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  selector: 'app-todo-list',
+  templateUrl: './todo-list.component.html',
+  styleUrls: ['./todo-list.component.scss']
 })
-export class TaskListComponent implements OnInit {
+export class TodoListComponent implements OnInit {
 
-  @Input() tasks: Task[];
+  @Input() todos: Todo[];
 
   selectAll = false;
 
   @ViewChild("selectionList") selectionList: MatSelectionList;
 
-  selectedTasks: Task[] = [];
+  selectedTodos: Todo[] = [];
 
   constructor() { }
 
@@ -23,7 +23,7 @@ export class TaskListComponent implements OnInit {
   }
 
   isAllSelected(){
-    return this.selectedTasks.length == this.tasks.length;
+    return this.selectedTodos.length == this.todos.length;
   }
 
   onSelectAll(){

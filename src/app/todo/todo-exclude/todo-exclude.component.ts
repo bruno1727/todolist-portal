@@ -3,14 +3,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'app-task-exclude',
-  templateUrl: './task-exclude.component.html',
-  styleUrls: ['./task-exclude.component.scss']
+  selector: 'app-todo-exclude',
+  templateUrl: './todo-exclude.component.html',
+  styleUrls: ['./todo-exclude.component.scss']
 })
-export class TaskExcludeComponent implements OnInit {
+export class TodoExcludeComponent implements OnInit {
 
-  @Input() selectedTasks: string[];
-  @Output() removeTasksEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() selectedTodos: string[];
+  @Output() removeTodosEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   tooltipPosition: TooltipPosition = 'below';
 
@@ -19,14 +19,14 @@ export class TaskExcludeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  removeTasks(){
+  removeTodos(){
     let valid = true;
 
-    if(!this.selectedTasks.length){
+    if(!this.selectedTodos.length){
       this._snackBar.open("Nenhuma tarefa selecionada");
       valid = false;
     }
-    this.removeTasksEvent.emit(valid);
+    this.removeTodosEvent.emit(valid);
   }
 
 }

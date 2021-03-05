@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TaskManagerComponent } from './task-manager/task-manager/task-manager.component';
+import { TodoComponent } from './todo/todo/todo.component';
 
 
 const routes: Routes = [
-  { path: 'task-manager', component: TaskManagerComponent },
+  { path: 'task-manager', component: TodoComponent },
   { path: '', redirectTo: '/task-manager', pathMatch: 'full' },
 ];
 
