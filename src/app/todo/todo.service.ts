@@ -3,6 +3,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Todo } from './models/todo.model';
 import { Observable, of} from 'rxjs';
 import { LocalStorage } from './local-storage';
+import { TodoRequest } from './request/todo.request';
+import { DeleteTodoRequest } from './request/delete-todo.request';
+import { IncludeTodoRequest } from './request/include-todo.request';
+import { TodoResponse } from './response/todo.response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,35 +20,34 @@ export class TodoService {
       localStorage.setItem("todos", JSON.stringify([]));
   }
 
-  getTodos(): Observable<Todo[]>{
+  getTodos(): Observable<TodoResponse[]>{
 
     if(LocalStorage.isOffline()){
       return of(JSON.parse(this._getTodosLocalStorage()));
     } else{
-      return this.http.get<Todo[]>(this.apiUrl);
+      return this.http.get<TodoResponse[]>(this.apiUrl);
     }
 
   }
 
-  addTodos(todos: string[]): Observable<any>{
+  addTodos(request: IncludeTodoRequest): Observable<any>{
 
     if(LocalStorage.isOffline()){
-      this._addTodosLocalStorage(todos);
+      this._addTodosLocalStorage(request.todos.map(t => t.description));
       return of(true);
     } else{
-      return this.http.post<any>(this.apiUrl, {Todos: todos.map(t => ({description: t}) )});
+      return this.http.post<any>(this.apiUrl, request);
     }
   }
 
-  removeTodos(todos: Todo[]): Observable<Todo[]>{
-
-    const ids = todos.map(t => t.id);
+  removeTodos(request : DeleteTodoRequest): Observable<TodoResponse[]>{
 
     if(LocalStorage.isOffline()){
-      localStorage.setItem("todos", JSON.stringify(JSON.parse(this._getTodosLocalStorage()).filter(t => ids.indexOf(t.id) == -1 )));
-      return of(todos);
+      let todosLocalStorage = JSON.parse(this._getTodosLocalStorage()).filter(t => request.todosIds.indexOf(t.id) == -1 );
+      localStorage.setItem("todos", JSON.stringify(todosLocalStorage));
+      return of(todosLocalStorage);
     } else{
-      return this.http.post<Todo[]>(this.apiUrl + "/delete", {TodosIds: ids});
+      return this.http.post<Todo[]>(this.apiUrl + "/delete", request);
     }
   }
 

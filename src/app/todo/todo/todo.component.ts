@@ -5,6 +5,9 @@ import { TodoService } from '../todo.service';
 import { Subscription } from 'rxjs';
 import { Todo } from '../models/todo.model';
 import { TodoIncludeComponent } from '../todo-include/todo-include.component';
+import { TodoRequest } from '../request/todo.request';
+import { DeleteTodoRequest } from '../request/delete-todo.request';
+import { IncludeTodoRequest } from '../request/include-todo.request';
 
 @Component({
   selector: 'app-todo',
@@ -38,7 +41,7 @@ export class TodoComponent implements OnInit {
 
   loadTodos(){
     this.service.getTodos().subscribe(data => {
-      this.todos = data;
+      this.todos = data.map(r => ({id: r.id, description: r.description} as Todo));
     });
   }
 
@@ -48,7 +51,11 @@ export class TodoComponent implements OnInit {
   }
 
   private _addTodos(todos: string[]){
-    this.service.addTodos(todos).subscribe(data => {
+    this.service.addTodos(
+      ({
+        todos: todos.map(t => ( {description: t } as TodoRequest ))
+      } as IncludeTodoRequest )
+    ).subscribe(data => {
       this._snackBar.open(todos.length + ' tarefa(s) adicionada(s)');
       this.loadTodos();
     })
@@ -57,7 +64,7 @@ export class TodoComponent implements OnInit {
   removeTodos(valid: boolean){
 
     if(valid){
-      this.service.removeTodos(this.list.selectedTodos).subscribe(data => {
+      this.service.removeTodos( {todosIds: this.list.selectedTodos.map(t => t.id)} as DeleteTodoRequest).subscribe(data => {
         this.loadTodos();
 
         this._snackBar
