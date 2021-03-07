@@ -4,7 +4,7 @@
     </button>
     <mat-form-field class="example-full-width">
         <mat-label>Tarefa</mat-label>
-        <input #input matInput [(ngModel)]="todo" name="todo">
+        <input #input matInput [(ngModel)]="todo" name="todo" autofocus>
         <mat-hint align="end">{{todo.length}} / 256</mat-hint>
         <button mat-button *ngIf="todo" matSuffix mat-icon-button aria-label="Clear" (click)="todo=''">
             <mat-icon>close</mat-icon>

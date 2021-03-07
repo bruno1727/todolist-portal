@@ -25,7 +25,6 @@ export class TodoService{
     } else{
       return this.http.get<TodoResponse[]>(this.apiUrl);
     }
-
   }
 
   add(request: IncludeTodoRequest): Observable<any>{

@@ -36,7 +36,6 @@ export class TodoComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.include.focus();
  }
 
   loadTodos(){
