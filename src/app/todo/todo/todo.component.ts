@@ -40,7 +40,7 @@ export class TodoComponent implements OnInit {
  }
 
   loadTodos(){
-    this.service.getTodos().subscribe(data => {
+    this.service.get().subscribe(data => {
       this.todos = data.map(r => ({id: r.id, description: r.description} as Todo));
     });
   }
@@ -51,7 +51,7 @@ export class TodoComponent implements OnInit {
   }
 
   private _addTodos(todos: string[]){
-    this.service.addTodos(
+    this.service.add(
       ({
         todos: todos.map(t => ( {description: t } as TodoRequest ))
       } as IncludeTodoRequest )
@@ -64,7 +64,7 @@ export class TodoComponent implements OnInit {
   removeTodos(valid: boolean){
 
     if(valid){
-      this.service.removeTodos( {todosIds: this.list.selectedTodos.map(t => t.id)} as DeleteTodoRequest).subscribe(data => {
+      this.service.delete( {todosIds: this.list.selectedTodos.map(t => t.id)} as DeleteTodoRequest).subscribe(data => {
         this.loadTodos();
 
         this._snackBar
