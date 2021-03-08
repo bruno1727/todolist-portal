@@ -36,7 +36,8 @@ export class LocalStorageService {
     const todosRequests = request.todos.map(t => {
       return ({
         id: Math.round((Math.random()*1000)),
-        description: t.description
+        description: t.description,
+        creationDate: t.creationDate,
       }) as Todo
     });
 

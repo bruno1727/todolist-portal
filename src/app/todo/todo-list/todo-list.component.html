@@ -2,7 +2,7 @@
     <div mat-subheader>
         <mat-checkbox #selectAllCheckbox (change)="onSelectAll()" [(ngModel)]="selectAll" *ngIf="todos.length" title="Selecionar todos"></mat-checkbox>
         <button mat-button (click)="cleanSelection()" *ngIf="selectedTodos.length">Limpar seleção</button>
-        <button mat-button (click)="selectAll = true; onSelectAll()" *ngIf="!selectedTodos.length">Selecionar todos</button>
+        <button mat-button (click)="selectAll = true; onSelectAll()" *ngIf="todos.length && !selectedTodos.length">Selecionar todos</button>
     </div>
     <mat-list-option *ngFor="let todo of todos" [value]="todo" [checkboxPosition]="'before'">{{todo.description}}</mat-list-option>
 </mat-selection-list>

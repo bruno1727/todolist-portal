@@ -31,6 +31,8 @@ export class TodoComponent implements OnInit {
     document.addEventListener('keydown', event => {
       if(event.keyCode == 46 && this.list.selectedTodos.length){
         this.removeTodos(true);
+      } else if(event.keyCode == 40 && this.list.selectedTodos.length){
+        console.log("down arrow!");
       }
     })
   }
@@ -40,7 +42,7 @@ export class TodoComponent implements OnInit {
 
   loadTodos(){
     this.service.get().subscribe(data => {
-      this.todos = data.map(r => ({id: r.id, description: r.description} as Todo));
+      this.todos = data.map(r => ({id: r.id, description: r.description, creationDate: r.creationDate} as Todo));
     });
   }
 
@@ -52,7 +54,7 @@ export class TodoComponent implements OnInit {
   private _addTodos(todos: string[]){
     this.service.add(
       ({
-        todos: todos.map(t => ( {description: t } as TodoRequest ))
+        todos: todos.map(t => ( {description: t, creationDate: new Date() } as TodoRequest ))
       } as IncludeTodoRequest )
     ).subscribe(data => {
       this._snackBar.open(todos.length + ' tarefa(s) adicionada(s)');
