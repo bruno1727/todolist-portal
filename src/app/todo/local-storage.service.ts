@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { TodoLocalStorage } from './models/todo-local-storage.model';
 import { Todo } from './models/todo.model';
 import { DeleteTodoRequest } from './request/delete-todo.request';
 import { IncludeTodoRequest } from './request/include-todo.request';
@@ -28,7 +29,7 @@ export class LocalStorageService {
   }
 
   get() : TodoResponse[]{
-    return JSON.parse(localStorage.getItem("todos"));
+    return this._getTodosFromLocalStorage().map(l => new TodoResponse(l));
   }
 
   add(request: IncludeTodoRequest) : boolean{
@@ -38,17 +39,21 @@ export class LocalStorageService {
         id: Math.round((Math.random()*1000)),
         description: t.description,
         creationDate: t.creationDate,
-      }) as Todo
+      }) as TodoLocalStorage
     });
 
-    localStorage.setItem("todos", JSON.stringify(JSON.parse(localStorage.getItem("todos")).concat(todosRequests)));
+    localStorage.setItem("todos", JSON.stringify(this._getTodosFromLocalStorage().concat(todosRequests)));
 
     return true;
   }
 
   delete(request : DeleteTodoRequest): TodoResponse[]{
-    let todosLocalStorage = this.get();
+    let todosLocalStorage = this._getTodosFromLocalStorage();
       localStorage.setItem("todos", JSON.stringify(todosLocalStorage.filter(t => request.todosIds.indexOf(t.id) == -1 )));
-      return todosLocalStorage.filter(t => request.todosIds.indexOf(t.id) != -1 );
+      return todosLocalStorage.filter(t => request.todosIds.indexOf(t.id) != -1 ).map(t => new TodoResponse(t));
+  }
+
+  private _getTodosFromLocalStorage() : TodoLocalStorage[]{
+    return JSON.parse(localStorage.getItem("todos"));
   }
 }
