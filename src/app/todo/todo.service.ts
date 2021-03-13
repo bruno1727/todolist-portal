@@ -28,7 +28,6 @@ export class TodoService{
   }
 
   add(request: IncludeTodoRequest): Observable<any>{
-
     if(this.localStorageService.isOffline()){
       return of(this.localStorageService.add(request));
     } else{

@@ -4,5 +4,6 @@
         <button mat-button (click)="cleanSelection()" *ngIf="selectedTodos.length">Limpar seleção</button>
         <button mat-button (click)="selectAll = true; onSelectAll()" *ngIf="todos.length && !selectedTodos.length">Selecionar todos</button>
     </div>
-    <mat-list-option title="Criado em {{todo.creationDate}}" *ngFor="let todo of todos" [value]="todo" [checkboxPosition]="'before'">{{todo.description}}</mat-list-option>
+    <mat-list-option [@inOutTrigger]="'out'"
+        title="Criado em {{todo.creationDate}}" *ngFor="let todo of todos" [value]="todo" [checkboxPosition]="'before'">{{todo.description}}</mat-list-option>
 </mat-selection-list>

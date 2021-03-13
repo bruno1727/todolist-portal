@@ -42,7 +42,8 @@ export class TodoComponent implements OnInit {
 
   loadTodos(){
     this.service.get().subscribe(data => {
-      this.todos = data.map(r => ({id: r.id, description: r.description, creationDate: r.creationDate} as Todo));
+      data.filter(d => this.todos.map(t => t.id).indexOf(d.id) == -1 ).forEach(d => this.todos.push(d)); //add
+      this.todos = this.todos.filter(t => data.map(d => d.id).indexOf(t.id) != -1); //remove
     });
   }
 
