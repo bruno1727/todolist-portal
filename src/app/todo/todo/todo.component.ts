@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { TodoListComponent } from '../todo-list/todo-list.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TodoService } from '../todo.service';
-import { Subscription } from 'rxjs';
 import { Todo } from '../models/todo.model';
-import { TodoIncludeComponent } from '../todo-include/todo-include.component';
-import { TodoRequest } from '../request/todo.request';
 import { DeleteTodoRequest } from '../request/delete-todo.request';
 import { IncludeTodoRequest } from '../request/include-todo.request';
+import { TodoRequest } from '../request/todo.request';
+import { TodoIncludeComponent } from '../todo-include/todo-include.component';
+import { TodoListComponent } from '../todo-list/todo-list.component';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -22,6 +21,8 @@ export class TodoComponent implements OnInit {
   @ViewChild("list") list: TodoListComponent;
   @ViewChild("include") include: TodoIncludeComponent;
 
+  todo: Todo = new Todo();
+
   constructor(private _snackBar: MatSnackBar,
     private service: TodoService) { }
 
@@ -35,6 +36,7 @@ export class TodoComponent implements OnInit {
         console.log("down arrow!");
       }
     })
+
   }
 
   ngAfterViewInit() {
@@ -42,7 +44,7 @@ export class TodoComponent implements OnInit {
 
   loadTodos(){
     this.service.get().subscribe(data => {
-      data.filter(d => this.todos.map(t => t.id).indexOf(d.id) == -1 ).forEach(d => this.todos.push(d)); //add
+      data.filter(d => this.todos.map(t => t.id).indexOf(d.id) == -1 ).forEach(d => this.todos.push(Todo.of(d))); //add
       this.todos = this.todos.filter(t => data.map(d => d.id).indexOf(t.id) != -1); //remove
     });
   }

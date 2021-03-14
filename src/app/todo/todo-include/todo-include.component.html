@@ -1,12 +1,12 @@
 <form class="example-form">
-    <button mat-flat-button color="primary" (click)="addTodo()" [disabled]="!todo.trim().length">
+    <button mat-flat-button color="primary" (click)="addTodo()" [disabled]="!todo.description.trim().length">
         <mat-icon>add</mat-icon> Adicionar
     </button>
     <mat-form-field class="example-full-width">
         <mat-label>Tarefa</mat-label>
-        <input #input matInput [(ngModel)]="todo" name="todo" autofocus autocomplete="off">
-        <mat-hint align="end">{{todo.length}} / 256</mat-hint>
-        <button mat-button *ngIf="todo" matSuffix mat-icon-button aria-label="Clear" (click)="todo=''">
+        <input #input matInput [(ngModel)]="todo.description" name="todo" autofocus autocomplete="off">
+        <mat-hint align="end">{{todo.description.length}} / 256</mat-hint>
+        <button mat-button *ngIf="todo.description.length" matSuffix mat-icon-button aria-label="Clear" (click)="todo.description=''">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>

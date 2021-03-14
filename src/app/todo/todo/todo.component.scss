@@ -1,12 +1,18 @@
 .mat-card{
     background-color: #FAFAFA;
+    margin-right: 1rem;
 }
 
 .mat-card-header{
-    padding: 20px;
+    padding: 1.2rem;
 }
 
 .mat-card-title{
     font-family: NeoRetroDraw;
     font-size: 3rem;;
 }
+
+.row{
+    display: flex;
+}
+

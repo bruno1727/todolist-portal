@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatInput } from '@angular/material/input';
+import { Todo } from '../models/todo.model';
 
 @Component({
   selector: 'app-todo-include',
@@ -13,21 +14,21 @@ export class TodoIncludeComponent implements OnInit {
 
   @ViewChild("input") input: ElementRef;
 
-  todo: string = "";
+  @Input() todo: Todo = new Todo();
 
   constructor(private _snackBar: MatSnackBar) {
-   }
+  }
 
   ngOnInit(): void {
   }
 
   addTodo(){
 
-    if(!this.todo.trim().length){
+    if(!this.todo.description.trim().length){
       this._snackBar.open("Não é permitido inserir uma tarefa vazia");
     } else{
-      this.addTodoEvent.emit(this.todo);
-      this.todo = "";
+      this.addTodoEvent.emit(this.todo.description);
+      this.todo.description = "";
     }
 
   }
