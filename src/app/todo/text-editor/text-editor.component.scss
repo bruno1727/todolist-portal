@@ -1,3 +1,18 @@
+div{
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-hint{
+    align-self: flex-end;
+    margin-right: 1px;
+    font-size: 0.7rem;
+}
+
+:host ::ng-deep .ck-focused { 
+    border-color: #c4c4c4 !important;
+  }
+
 :host ::ng-deep .ck-editor__editable_inline {
     min-width: 300px;
     max-width: 500px;

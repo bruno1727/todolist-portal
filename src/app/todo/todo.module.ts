@@ -35,10 +35,7 @@ import { TodoComponent } from './todo/todo.component';
     MatTooltipModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    CKEditorModule
+    CKEditorModule,
   ],
-  // providers: [
-  //   { provide: FateIconService, useClass: IconService }
-  // ],
 })
 export class TodoModule { }

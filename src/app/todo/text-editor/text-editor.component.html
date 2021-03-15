@@ -1,2 +1,12 @@
 <!-- <a (click)="teste()">teste</a> -->
-<ckeditor ([ngModel])="todo.descriptionHtml" (change)="setDescription($event)" [editor]="Editor" [config]="config"></ckeditor>
+<div>
+
+    <ckeditor 
+    ([ngModel])="todo.descriptionHtml" 
+    (change)="setDescription($event)" 
+    [editor]="Editor" 
+    [config]="config"
+    (ready)="onReady($event)"></ckeditor>
+    
+    <mat-hint>{{currCharacters}}/{{maxCharacters}}</mat-hint>
+</div>
