@@ -1,27 +1,27 @@
 <div>
     <app-data-switch-mode (changeOutput)="loadTodos()"></app-data-switch-mode>
-    <div class="row">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>TODO List</mat-card-title>
-            </mat-card-header>
-            <mat-divider></mat-divider>
-            <mat-card-content>
-                <app-todo-include #include (addTodoEvent)="addTodo($event)" [todo]="todo"></app-todo-include>
-                <app-todo-list #list [todos]="todos"></app-todo-list>
-                <app-todo-exclude *ngIf="list.selectedTodos.length" [selectedTodos]="list.selectedTodos" (removeTodosEvent)="removeTodos($event)">
-                </app-todo-exclude>
-            </mat-card-content>
-        </mat-card>
-        <mat-card>
-            <form>
-                <!-- <mat-form-field>
-                    <mat-label>Tarefa</mat-label>
-                    <textarea matInput [(ngModel)]="todo.description" name="todo"
-                    [mat-autosize]="true"></textarea>                    
-                </mat-form-field> -->                
+    <form [formGroup]="formGroup">
+        <div class="row">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>TODO List</mat-card-title>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <app-todo-include #include (addTodoEvent)="addTodo($event)" [todo]="todo"  [formGroup]="formGroup" [disabled]="!formGroup.valid"></app-todo-include>
+                    <app-todo-list #list [todos]="todos"></app-todo-list>
+                    <app-todo-exclude *ngIf="list.selectedTodos.length" [selectedTodos]="list.selectedTodos" (removeTodosEvent)="removeTodos($event)">
+                    </app-todo-exclude>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                    <!-- <mat-form-field>
+                        <mat-label>Tarefa</mat-label>
+                        <textarea matInput [(ngModel)]="todo.description" name="todo"
+                        [mat-autosize]="true"></textarea>                    
+                    </mat-form-field>                 -->
                 <app-text-editor [todo]='todo'></app-text-editor>
-            </form>            
-        </mat-card>
-    </div>
+            </mat-card>
+        </div>
+    </form>            
 </div>

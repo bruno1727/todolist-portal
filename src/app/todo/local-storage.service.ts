@@ -54,6 +54,7 @@ export class LocalStorageService {
   }
 
   private _getTodosFromLocalStorage() : TodoLocalStorage[]{
-    return JSON.parse(localStorage.getItem("todos"));
+    let todos = JSON.parse(localStorage.getItem("todos"));
+    return todos || [];
   }
 }

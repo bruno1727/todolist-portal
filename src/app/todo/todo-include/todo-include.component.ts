@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, Input }
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatInput } from '@angular/material/input';
 import { Todo } from '../models/todo.model';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-include',
@@ -15,20 +16,27 @@ export class TodoIncludeComponent implements OnInit {
   @ViewChild("input") input: ElementRef;
 
   @Input() todo: Todo = new Todo();
+  @Input() disabled: boolean;
+  @Input() formGroup: FormGroup;
+
+  get description()  { return this.formGroup.get('description'); }
 
   constructor(private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
+    this.description.valueChanges.subscribe(data => {
+      this.todo.description = data;
+    })
   }
 
   addTodo(){
 
-    if(!this.todo.description.trim().length){
+    if(!this.formGroup.valid){
       this._snackBar.open("Não é permitido inserir uma tarefa vazia");
     } else{
       this.addTodoEvent.emit(this.todo.description);
-      this.todo.description = "";
+      this.description.setValue("");
     }
 
   }

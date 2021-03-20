@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_HAMMER_OPTIONS } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Todo } from '../models/todo.model';
 import { DeleteTodoRequest } from '../request/delete-todo.request';
@@ -23,8 +25,15 @@ export class TodoComponent implements OnInit {
 
   todo: Todo = new Todo();
 
+  formGroup: FormGroup;
+
   constructor(private _snackBar: MatSnackBar,
-    private service: TodoService) { }
+    private service: TodoService) {
+
+      this.formGroup = new FormGroup({
+        'description': new FormControl('', {validators: Validators.required, updateOn: 'change'})
+      })
+     }
 
   ngOnInit(): void {
     this.loadTodos();
@@ -52,6 +61,7 @@ export class TodoComponent implements OnInit {
   addTodo(todo: string){
     this._addTodos([todo]);
     this.include.focus();
+    this.formGroup.reset();
   }
 
   private _addTodos(todos: string[]){
