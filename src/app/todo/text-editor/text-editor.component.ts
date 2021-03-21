@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as MoraisEditor from '@bruno1727/ckeditor5-custom-build';
 import { CKEditor5 } from '@ckeditor/ckeditor5-angular';
 import '@ckeditor/ckeditor5-build-classic/build/translations/pt';
@@ -11,6 +12,9 @@ import { Todo } from '../models/todo.model';
 export class TextEditorComponent implements OnInit {
 
   @Input() todo: Todo;
+  @Input() formGroup: FormGroup;
+
+  get description(){return this.formGroup.get('description')};
 
   editor: CKEditor5.Editor;
   maxCharacters: number = 2000;
@@ -34,6 +38,9 @@ export class TextEditorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.formGroup.get('description').valueChanges.subscribe(data =>{
+      this.todo.descriptionHtml = data;
+    })
   }
 
   public onReady( editor: CKEditor5.Editor ) {

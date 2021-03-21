@@ -1,8 +1,8 @@
 <!-- <a (click)="teste()">teste</a> -->
-<div>
+<div [formGroup]="formGroup">
 
     <ckeditor 
-    ([ngModel])="todo.descriptionHtml" 
+    formControlName="description"
     (change)="setDescription($event)" 
     [editor]="Editor" 
     [config]="config"

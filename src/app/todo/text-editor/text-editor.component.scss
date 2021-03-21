@@ -37,3 +37,13 @@ div{
     width: 1rem;
     height: 1rem;
 }
+
+.ng-invalid.ng-dirty{
+    border:  2px solid  red !important;
+    transition: border-color 1s;
+}
+
+::root{
+    --ck-border-radius: 4px;
+
+}

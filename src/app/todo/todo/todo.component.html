@@ -20,7 +20,7 @@
                         <textarea matInput [(ngModel)]="todo.description" name="todo"
                         [mat-autosize]="true"></textarea>                    
                     </mat-form-field>                 -->
-                <app-text-editor [todo]='todo'></app-text-editor>
+                <app-text-editor [todo]='todo' [formGroup]="formGroup"></app-text-editor>
             </mat-card>
         </div>
     </form>            
