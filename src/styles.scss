@@ -22,3 +22,37 @@ body{
     font-family: ComicZine;
     src: url('assets/fonts/comic-zine/comic-zine-regular.otf');
 }
+
+.todo {
+
+    --primary-color: #0086A3;
+    --background-color: #EEF0F3;
+    --border-color: #D8DFE7;
+    --invalid-color: #f44336;
+
+
+    --ck-border-radius: 4px !important;
+    --ck-font-size-base: 0.7rem !important;
+    --ck-color-base-background: var(--background-color) !important;
+    --ck-color-toolbar-background: var(--background-color) !important;
+    --ck-color-toolbar-border: var(--border-color) !important;
+    --ck-color-base-border: var(--border-color) !important;
+    --ck-focus-ring: 2px solid var(--ck-color-focus-border) !important;
+    --ck-color-focus-border: var(--primary-color) !important;
+    --ck-inner-shadow: 0px !important;
+    --ck-color-tooltip-background: #403d3dcf;
+    --ck-color-tooltip-text: white;
+    --ck-color-text: #545353;
+
+}
+
+.todo .ck-editor__editable_inline:hover{
+    border: 2px solid;
+    border-color: var(--primary-color) !important;
+    transition: border-color .2s;
+}
+
+.todo .ng-invalid.ng-dirty .ck-editor__editable_inline{
+    border:  2px solid  var(--invalid-color) !important;
+    transition: border-color .1s;
+}

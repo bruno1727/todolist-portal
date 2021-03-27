@@ -21,9 +21,10 @@ import { TodoIncludeComponent } from './todo-include/todo-include.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoSearchComponent } from './todo-search/todo-search.component';
 import { TodoComponent } from './todo/todo.component';
+import { UpdateNotificationComponent } from './update-notification/update-notification.component';
 
 @NgModule({
-  declarations: [TodoComponent, TodoSearchComponent, TodoIncludeComponent, TodoListComponent, TodoExcludeComponent, DataSwitchModeComponent, TextEditorComponent],
+  declarations: [TodoComponent, TodoSearchComponent, TodoIncludeComponent, TodoListComponent, TodoExcludeComponent, DataSwitchModeComponent, TextEditorComponent, UpdateNotificationComponent],
   imports: [
     CommonModule,
     MatFormFieldModule,

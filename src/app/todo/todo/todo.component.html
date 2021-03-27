@@ -1,4 +1,4 @@
-<div>
+<div class="todo">
     <app-data-switch-mode (changeOutput)="loadTodos()"></app-data-switch-mode>
     <form [formGroup]="formGroup">
         <div class="row">
@@ -14,7 +14,7 @@
                     </app-todo-exclude>
                 </mat-card-content>
             </mat-card>
-            <mat-card>
+            <mat-card *ngIf="false">
                     <!-- <mat-form-field>
                         <mat-label>Tarefa</mat-label>
                         <textarea matInput [(ngModel)]="todo.description" name="todo"
@@ -25,3 +25,4 @@
         </div>
     </form>            
 </div>
+<app-update-notification></app-update-notification>
