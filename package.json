@@ -24,7 +24,7 @@
     "@bruno1727/ckeditor5-custom-build": "0.0.1",
     "@ckeditor/ckeditor5-angular": "^1.2.3",
     "@ckeditor/ckeditor5-build-classic": "^26.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
